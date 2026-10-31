@@ -25,6 +25,7 @@ public sealed class PairedActionLatencyTests
     [InlineData(NetProfile.Enhanced, "200", 2)]
     public void LethalDamageDeathPoseAndRespawnRemainAuthoritativeAcrossPawnLifetimes(NetProfile profile, string link, int victimIndex)
     {
+        Assert.SkipWhen(WalkerRig.Maps.FindFolder("SteeE") is null, "SteeE and its converted character content are required.");
         var clock = new VirtualClock();
         var network = new SimLinkNetwork(clock, 420, SimLinkProfile.Get(link));
         using var match = new BotMatch(new BotMatchSettings
@@ -137,6 +138,7 @@ public sealed class PairedActionLatencyTests
     [InlineData(NetProfile.Enhanced, "200")]
     public void TwoOwnersCompleteAGrabKnockoutAndRecoveryWithoutDuplicateDamageOrPredictionResets(NetProfile profile, string link)
     {
+        Assert.SkipWhen(WalkerRig.Maps.FindFolder("SteeE") is null, "SteeE and its converted character content are required.");
         var clock = new VirtualClock();
         var network = new SimLinkNetwork(clock, 208, SimLinkProfile.Get(link));
         using var match = new BotMatch(new BotMatchSettings

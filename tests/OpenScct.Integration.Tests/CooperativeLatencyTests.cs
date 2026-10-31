@@ -37,6 +37,7 @@ public sealed class CooperativeLatencyTests
     {
         Assert.SkipWhen(WalkerRig.Maps.FindFolder("SteeE") is null, "SteeE has not been converted into .content/svmap.");
         string folder = Assert.IsType<string>(WalkerRig.Maps.FindFolder("SteeE"));
+        Assert.SkipWhen(PlayMapLoader.FindCharsDir(folder) is null, "The converted character clips are not in .content/shared/chars.");
         string chars = Assert.IsType<string>(PlayMapLoader.FindCharsDir(folder));
         var clock = new VirtualClock();
         var network = new SimLinkNetwork(clock, 438, SimLinkProfile.Get(link));
